@@ -1,0 +1,45 @@
+{% extends "admin_base.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+
+    <div class="logparent">
+        <div class="loginbox">
+                <div class="loghead">
+                    <h1>Login To Admin</h1>
+                </div>
+                <form action="/admin_login" method="post">
+                    {% csrf_token %}
+                <div class="logbody">
+
+
+                    {% if messages %}
+                    {{messages.tags}}
+                        {% for message in messages %}
+                            <div class="alert">{{ message }}</div>
+                        {% endfor %}  
+                    {% endif %}
+                   
+                        <div>
+                            <label for="username">Username</label><br>
+                            <input type="text" name="username" class="input_admin" placeholder="Enter Username">
+                        </div>
+                        <div>
+                            <label for="Password">Password</label><br>
+                            <input type="Password" name="Password" class="input_admin" placeholder="Enter Password">
+                        </div>
+                        <div class="logsubmit">
+                            <button type="submit">Submit</button>
+                        </div>
+
+                        <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; align-self: center;">New One? <a href="/admin_register">Register</a></p>
+                </div>
+            </form>
+        </div>
+      
+    </div>
+
+
+{% endblock body %}

@@ -1,0 +1,78 @@
+{% extends "admin_base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block body %} 
+
+    <header id="admin_header">
+        <div class="header_box">
+            <h1>E-Vakeel Admin</h1>
+        </div>
+        <div class="header_box">
+            <a href="/logout_admin"><button>Logout</button></a>
+        </div>
+    </header>
+
+    <div class="hi_banner">Hello,{{request.user.first_name}} {{request.user.last_name}} </div>
+
+    <div class="admin_home_parent">
+
+        <a href="/admin_team" style="text-decoration: none; color: black;">
+            <div class="menubox">
+                <div>
+                    <img src="{% static 'images/Team.png' %}" alt="Teamlogo">
+                </div>
+                <div>
+                    <h2>Team of E-vakeel</h2>
+                </div>
+            </div>
+        </a>
+
+        <a href="/admin_msg" style="text-decoration: none; color: black;">
+            <div class="menubox">
+                <div>
+                    <img src="{% static 'images/msg.png' %}" alt="Teamlogo">
+                </div>
+                <div>
+                    <h2>Messages</h2>
+                </div>
+            </div>
+        </a>
+
+
+            <div class="dashborad">
+
+                <div class="dashbox">
+                    <div class="dboxtop">
+                        <!-- only for design -->
+                    </div>
+                    <div class="countbox">
+                        <div class="sub_countbox">
+                            <h3>Today's Messages</h3>
+                            <span>{{day_count}}</span>
+                        </div>
+                        <div>
+                            <img src="{% static 'images/msg_logo.png' %}" alt="msg_icon">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashbox">
+                    <div class="dboxtop">
+                        <!-- only for design -->
+                    </div>
+                    <div class="countbox">
+                        <div class="sub_countbox">
+                            <h3>Total Messages</h3>
+                            <span>{{total_count}}</span>
+                        </div>
+                        <div>
+                            <img src="{% static 'images/msg_logo.png' %}" alt="msg_icon">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+{% endblock body %}

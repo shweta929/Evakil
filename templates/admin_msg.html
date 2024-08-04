@@ -1,0 +1,71 @@
+{% extends "admin_base.html" %}
+{% load static %}
+
+{% block title %}Team{% endblock title %}
+
+{% block body %}
+
+
+<a href="/admin_home" title="Back to HOME" class="back_to_home"><img src="{% static 'images/arrow.png' %}" alt="back_to_home" ></a>
+<div class="msg_parent">
+
+        <h1 class="sub_head">Messages Form Website</h1>
+
+        <form>
+            <div class="search-container" style="margin-top: 20px;">
+                    <input type="text" name="Search" placeholder="Search By Name">
+                    <button type="submit"><img src="{% static 'images/Search.png' %}" alt="Search" style="margin: 5px;"></button>
+            </div>
+        </form>
+        <div class="msg_alert">
+            {% if result == True %}
+
+            <div class="result_is_found" style="height: 40px;">
+                <div>Result for"{{data}}..."</div>
+                <div>
+                    <a href="/admin_msg"><button>Go to all List</button></a>
+                </div>
+            </div>
+        
+            {% elif result == False %}
+        
+            <div class="result_not_found">
+                <div>"{{data}}..." is not found !!!</div>
+                <div>
+                    <a href="/admin_msg"><button>Go to all List</button></a>
+                </div>
+            </div>
+        
+            {% endif %}
+        </div>
+ 
+<div class="msg_box_col" >
+
+    {% for i in customer_messages %}
+    <div class="msg_box">
+        <div class="contact_info">
+            <div class="profile">
+                <img src="{% static 'images/img.jpg' %}" alt="profile image">
+                <div class="proinfo">
+                    <h2>{{i.Name}}</h2>
+                    <p>{{i.Email}}<p>
+                </div>   
+            </div>
+        </div>
+        <div class="msg_subbox">
+              <b> Subject - {{i.Subject}} </b><br><br>
+               Moblie - {{i.Phone}} <br><br>
+               {{i.Message}}
+        </div>
+        <div class="date_n_action">
+            <p class="date">{{i.Date}}</p>
+            <a href="/delete_msg?id={{i.id}}"><button class="Delete_msg" onclick="message_delete()"> Delete</button></a>
+        </div>
+    </div>
+    {% endfor %}
+
+    <br><br>
+
+</div>
+</div>
+{% endblock body %}

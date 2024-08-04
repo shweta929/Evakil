@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-Vakeel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'images/logo1.png' %}" type="image/x-icon">
+    
+</head>
+<body>
+    <header class="header">
+        <a href="" class="logo"><i><img src="{% static 'images/logo1.png' %}" alt="e-vakil" class="logoimg"></i> <span class="logotitle">E-Vakeel.com</span></a>
+        <nav class="navbar">
+            <div id="nav-close" class="fas fa-times"></div>
+            <a href="#home">Home</a>
+            <a href="#team">Our Team</a>
+            <a href="#services">Services</a>
+            <a href="#contact">contact</a>
+        </nav>
+        <div class="icons">
+            <div id="menu-btn" class="fas fa-bars" style="color: #FFA500;"></div> 
+            <div id="search-btn" class="fas fa-search" style="color: #FFA500;"></div>
+          
+        </div>
+    </header>
+
+    <div class="search-form">
+        <div id="close-search" class="fas fa-times"></div>
+        <form action="">
+        <input type="search" name="" placeholder="search here..." id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+        </form>
+    </div>
+
+    <section class="home" id="home">
+   
+        <div class="wrapper">
+           
+            <div class="box" style="background: url('{% static 'images/home1.jpg' %}') no-repeat;">
+
+                <div class="content">
+                    <span>Your Tursted Partner in</span>
+                    <h3>Consumer Protection Act</h3>
+                    <a href="#contact" class="btn">Book Your appointment</a>
+                </div>
+                </div>  
+        </div>
+    </section>
+
+    <section class="category" id="team">
+
+        <h1 class="heading">Our Team</h1>
+    
+        <div class="box-container">
+    
+            {% for i in team %}
+                <div class="box">
+                    <img src="/media/{{i.Image}}" alt="">
+                    <h3>{{i.Name}}</h3>
+                    <h3>{{i.Qualification}}</h3>
+                    <p>{{i.Description}}</p>     
+                    <a href="mailto:{{i.Email}}" class="btn">Contact</a>
+                </div>
+            {% endfor %}
+    
+        </div>
+    
+    </section>
+    <section class="packages" id="services">
+
+        <h1 class="heading">Consumer Protection Law</h1>
+    
+        <div class="box-container">
+    
+            <div class="box">
+                <div class="image">
+                    <img src="{% static 'images/img-1.jpg' %}" alt="">
+                </div>
+                <div class="content">
+                    <h3>1. Adequate consumer law.</h3>
+                    <p>"Consumer's Right", by definition, and empowered with essential is the right of a consumer to have adequate information regarding the quality,and standard of the commodity they are using and that they are...</p>
+                    <a href="https://en.wikipedia.org/wiki/Consumer_protection" class="btn">Know More</a>
+                </div>
+            </div>
+    
+            <div class="box">
+                <div class="image">
+                    <img src="{% static 'images/img-2.jpg' %}" alt="">
+                </div>
+                <div class="content">
+                    <h3>2.Effective law implementation and enforcement.</h3>
+                    <p>It supports the enforcement process by creating a conducive environment for compliance, while enforcement plays a crucial role in deterring violations</p>
+                    <a href="https://en.wikipedia.org/wiki/Consumer_protection" class="btn">Know More</a>
+                </div>
+            </div>
+    
+            <div class="box">
+                <div class="image">
+                    <img src="{% static 'images/img-3.jpg' %}" alt="">
+                </div>
+                <div class="content">
+                    <h3>3.Aware Consumer</h3>
+                    <p>"It is a crucial demonstration of ensuring the purchaser or buyer is well-informed and empowered with essential information about items, the purchaser or products, services, and consumer rights."</p>
+                    <a href="https://en.wikipedia.org/wiki/Consumer_protection" class="btn">Know More</a>
+                </div>
+            </div>
+    
+            <div class="box">
+                <div class="image">
+                    <img src="{% static 'images/img-4.jpg' %}" alt="">
+                </div>
+                <div class="content">
+                    <h3>4. Access to redress mechanisms.</h3>
+                    <p>It is a key recommendation to establish grievance redress mechanisms that are accessible to all stakeholders, socioculturally appropriate, gender-sensitive and tailored to the local context...</p>
+                    <a href="https://en.wikipedia.org/wiki/Consumer_protection" class="btn">Know More</a>
+                </div>
+            </div>
+    
+            <div class="box">
+                <div class="image">
+                    <img src="{% static 'images/img-5.jpg' %}" alt="">
+                </div>
+                <div class="content">
+                    <h3>5. Effective consumer organization.</h3>
+                    <p>A consumer organization/association is a membership-based non-governmental non- profit body created to promote the interests of consumers of goods and services, by disseminating informations...</p>
+                    <a href="https://en.wikipedia.org/wiki/Consumer_protection" class="btn">Know More</a>
+                </div>
+            </div>
+    
+            <div class="box">
+                <div class="image">
+                    <img src="{% static 'images/img-6.jpg' %}" alt="">
+                </div>
+                <div class="content">
+                    <h3>6. Responsible Business Conduct.</h3>
+                    <p>Responsible Business Conduct is a globally recognized concept founded on the idea that businesses can perform better idea that businesses when engaged in re-vitalizing the society from which they extract resources for...</p>
+                    <a href="https://en.wikipedia.org/wiki/Consumer_protection" class="btn">Know More</a>
+                </div>
+            </div>
+    
+        </div>
+    
+    </section>
+    <section class="contact" id="contact">
+    
+    <div class="wrapper1">
+        <div class="title1">
+          <h1 class="heading" style="color: #FFA500;">Contact us form</h1>
+        </div>
+        <div class="contact-form">
+        <form action="/send_msg" method="POST">
+                {% csrf_token %}
+          <div class="input-fields">
+            
+            <input type="text" class="input" placeholder="Name" name="name" required>
+            <input type="email" class="input" placeholder="Email Address" name="email" required> 
+            <input type="phone" class="input" placeholder="Phone" name="phone" required>
+            <input type="text" class="input" placeholder="Subject" name="subject" required>
+          </div>
+          <div class="msg">
+            <textarea placeholder="Message" name="message"></textarea>
+            <button type="submit" class="submit" onclick="form_submited()">send</button>
+            </form>
+          </div>
+        </div>
+        </div> 
+    
+    </section>
+    <section class="footer">
+
+        <div class="box-container">
+    
+            <div class="box">
+                <h3>Quick links</h3>
+                <a href="">Website of E-vakeel</a>    
+                <a href="https://www.india.gov.in/">Government of India</a>
+                <a href="https://consumeraffairs.nic.in/">MINISTRY OF CONSUMER AFFAIRS</a>
+            </div>
+    
+            <div class="box">
+                <h3>extra links</h3>
+                <a href="#contact">ask questions</a>
+                <a href="#">terms of use</a>
+                <a href="#">privacy policy</a>
+            </div>
+    
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="tel:+911234567890"> <i class="fas fa-phone" style="color: #FFA500;"></i> tel:+911234567890 </a>
+                <a href="mailto: example@gmail.com"> <i class="fas fa-envelope" style="color: #FFA500;"> </i> evakeel@gmail.com </a>
+                <a href="#"> <i class="fas fa-map" style="color: #FFA500;"></i> Bhor,Pune,India</a>
+            </div>
+    
+            <div class="box">
+                <h3>follow us</h3>
+                <a href="#"> <i class="fab fa-facebook-f" style="color: #FFA500;"></i> facebook </a>
+                <a href="#"> <i class="fab fa-instagram" style="color: #FFA500;"></i> instagram </a>
+                <a href="#"> <i class="fab fa-linkedin" style="color: #FFA500;"></i> linkedin </a>
+            </div>
+        </div>
+        <div class="credit">created by <span>E-vakeel</span> | all rights reserved!</div>
+    </section>
+    <!-- footer section ends -->
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

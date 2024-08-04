@@ -1,0 +1,35 @@
+{% extends "admin_base.html" %}
+{% load static %}
+
+{% block title %}Update{% endblock title %}
+
+{% block body %}
+<a href="/admin_team" title="Back to Admin Team" class="back_to_team"><img src="{% static 'images/arrow.png' %}" alt="back_to_home" ></a>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="add_box">
+        <div class="team_head">
+            <h2>Update Members</h2>
+        </div>
+        <div>
+            <label for="Name">Name</label><br>
+            <input type="text" name="Name" placeholder="Enter Your Name" value="{{qurryset.Name}}">
+        </div>
+        <div>
+            <label for="Qulification">Qulification</label><br>
+            <input type="text" name="Qulification" placeholder="Enter Your Qulification" value="{{qurryset.Qualification}}">
+        </div>
+        <div>
+            <label for="Description">Description</label><br>
+            <textarea name="Description" id="" cols="30" rows="10">{{qurryset.Description}}"</textarea>
+        </div>
+        <div>
+            <label for="Photo">Photo</label><br>
+            <input type="file" name="Photo" placeholder="Upload Your Profile Photo">
+        </div>
+        <div class="class_submit">
+            <button type="submit" onclick="update_member()">Submit</button>
+        </div>
+    </div>
+</form>  
+{% endblock body %}

@@ -1,0 +1,119 @@
+{% extends "admin_base.html" %}
+{% load static %}
+
+{% block title %}Team{% endblock title %}
+
+{% block body %}
+
+<a href="/admin_home" title="Back to HOME" class="back_to_home"><img src="{% static 'images/arrow.png' %}" alt="back_to_home" ></a>
+<center><h1 class="sub_head">Team Members</h1></center>
+
+<div class="team_parent">
+    <form action="/add_team"  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="add_box">
+            <div class="team_head">
+                <h2>Add Members</h2>
+            </div>
+            <div>
+                <label for="Name">Name</label><br>
+                <input type="text" name="Name" placeholder="Enter Your Name">
+            </div>
+            <div>
+                <label for="Qulification">Qulification</label><br>
+                <input type="text" name="Qulification" placeholder="Enter Your Qulification">
+            </div>
+            <div>
+                <label for="Description">Description</label><br>
+                <textarea name="Description" id="" cols="30" rows="10">Enter Your Description</textarea>
+            </div>
+            <div>
+                <label for="Photo">Photo</label><br>
+                <input type="file" name="Photo" placeholder="Upload Your Profile Photo">
+            </div>
+            <div class="class_submit">
+                <button type="submit" onclick="member_added()"><b>+ADD</b> </button>
+            </div>
+        </div>
+    </form>   
+ 
+    <div class="team_box">
+        
+        <form>
+            <div class="search-container">
+                    <input type="text" name="Search" placeholder="Search By Name">
+                    <button type="submit"><img src="{% static 'images/Search.png' %}" alt="Search" style="margin: 5px;"></button>
+            </div>
+        </form>
+
+        <!-- <table>
+            <tr>
+                <th>No.</th>
+                <th>Profile photo</th>
+                <th>Name</th>
+                <th>Qulification</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+            {% for i in member %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td><img src="/media/{{i.Image}}" alt="image of {{i.Name}} " style="" class="team_img"></td>
+                <td>{{i.Name}}</td>
+                <td>{{i.Qualification}}</td>
+                <td class="text_display">{{i.Description}}</td>
+                <td class="action">
+                    <a href="/update_team/{{i.id}}/"><button class="Update">Update</button></a>
+                    <a href="/delete_team?id={{i.id}}"><button class="Delete" onclick="delete_member()"> Delete</button></a>
+                </td>
+            {% endfor %}
+            </tr>
+        </table> -->
+
+    <div class="carddiv">
+
+        {% for i in member %}
+            <div class="teamcard">
+                <div class="cardhead">
+                    <h3>{{i.Name}}</h3>
+                </div>
+                <div class="imgdiv">
+                    <img src="/media/{{i.Image}}" alt="photo of {{i.Name}}">
+                </div>
+                <div class="teaminfo">
+                    <b><p>{{i.Qualification}}</p></b>
+                    <p>{{i.Description}}</p>    
+                </div>
+                <div class="team_action">
+                    <a href="/update_team/{{i.id}}/"><button class="Update">Update</button></a>
+                    <a href="/delete_team?id={{i.id}}"><button class="Delete" onclick="delete_member()"> Delete</button></a>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+    
+    {% if result == True %}
+
+        <div class="result_is_found">
+            <div>Result for"{{data}}..."</div>
+            <div>
+                <a href="/admin_team"><button>Go to all List</button></a>
+            </div>
+        </div>
+
+    {% elif result == False %}
+
+        <div class="result_not_found">
+            <div>"{{data}}..." is not found !!!</div>
+            <div>
+                <a href="/admin_team"><button>Go to all List</button></a>
+            </div>
+        </div>
+    
+    {% endif %}
+    </div>
+    </div>
+</div>
+
+{% endblock body %}
